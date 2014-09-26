@@ -42,6 +42,10 @@ class Attributes
 
   attr_accessor :stregnth, :speed, :wisdom, :alertness, :magic, :health
 
+  def initialize
+    @overall_stats = {}
+  end
+
   def stats_stregnth
     @stregnth = rand(1..10)
   end
@@ -66,11 +70,18 @@ class Attributes
     @health = rand(1..10)
   end
 
-  binding.pry
+  def add_em_up
+    total = stats_stregnth + stats_health + stats_magic + stats_alertness + stats_wisdom + stats_speed
+  end
+
 end
 
 
 player = Attributes.new
+something = player.add_em_up
+puts something
+# binding.pry
+
 
 
 
