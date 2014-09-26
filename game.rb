@@ -76,10 +76,20 @@ class Attributes
 
 end
 
-
+hero = pick_hero(heroes).upcase
 player = Attributes.new
-something = player.add_em_up
-puts something
+total_stats = player.add_em_up
+puts "your hero is #{hero} and their total hitpoints are #{total_stats}"
+puts "would you like to see a breakdown of your hitpoints (y/n)"
+breakdown = gets.chomp
+if breakdown == "y"
+
+
+
+
+
+
+#I want to try and place the random stats w/ name into a hash or a array, somewhere where they can all be listed
 # binding.pry
 
 
