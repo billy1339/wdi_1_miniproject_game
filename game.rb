@@ -8,19 +8,20 @@ require 'pry'
 
 heroes = {
   all_heroes: ["Knight", "Wizard", "Barbarian", "Samurai", "Wolverine", "Vampire", "Viking", "King", "Elf"],
-  knight: [1,2,3],
-  wizard: [1,2,3],
-  barbarian: [1,2,3],
-  samurai: [1,2,3],
-  wolverine: [1,2,3],
-  vampire: [1,2,3],
-  viking: [1,2,3],
-  king: [1,2,3],
-  elf: [1,2,3]
+  knight: [],
+  wizard: [],
+  barbarian: [],
+  samurai: [],
+  wolverine: [],
+  vampire: [],
+  viking: [],
+  king: [],
+  elf: []
 }
 
 # binding.pry
 #each hero has some attibutes, chose three attributes, and one weakness
+#this code will either add a new key to the hash or allow the player to pick from the existing list
 def pick_hero(heroes)
   puts "Welcome to the best game ever...first you must chose your hero"
   puts "There are some great heroes you can pick from...or you can make your own"
@@ -31,15 +32,53 @@ def pick_hero(heroes)
     puts "please enter the name of your character"
     new_hero = gets.chomp
     heroes[new_hero.to_sym] = []
+    return new_hero.downcase
   else
-    player_hero = heroes[hero.to_sym]
+    return hero.downcase
   end
-
 end
 
-pick_hero(heroes)
+class Attributes
 
-binding.pry
+  attr_accessor :stregnth, :speed, :wisdom, :alertness, :magic, :health
+
+  def stats_stregnth
+    @stregnth = rand(1..10)
+  end
+
+  def stats_speed
+    @speed = rand(1..10)
+  end
+
+  def stats_wisdom
+    @wisdom = rand(1..10)
+  end
+
+  def stats_alertness
+    @alertness = rand(1..10)
+  end
+
+  def stats_magic
+    @magic = rand(1..10)
+  end
+
+  def stats_health
+    @health = rand(1..10)
+  end
+
+  binding.pry
+end
+
+
+player = Attributes.new
+
+
+
+# pick_hero(heroes)
+
+
+# puts heroes
+# binding.pry
 #allow each player to pick their own attribute from the has of heroes, or make their own character
 
 
