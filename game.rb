@@ -12,27 +12,27 @@ require 'pry'
 
 heroes = {
   all_heroes: ["Knight", "Wizard", "Barbarian", "Samurai", "Wolverine", "Vampire", "Viking", "King", "Elf"],
-  knight: [],
-  wizard: [],
-  barbarian: [],
-  samurai: [],
-  wolverine: [],
-  vampire: [],
-  viking: [],
-  king: [],
-  elf: []
+  knight: {},
+  wizard: {},
+  barbarian: {},
+  samurai: {},
+  wolverine: {},
+  vampire: {},
+  viking: {},
+  king: {},
+  elf: {}
 }
-
+# .sample
 # binding.pry
 #each hero has some attibutes, chose three attributes, and one weakness
 
 
-#this code will either add a new key to the hash or allow the player to pick from the existing list
+#this code will either add a new key to the hash or allow the player to pick from the existing list. input datatype: hash. output datatype: string
 def pick_hero(heroes)
   puts "Welcome to the best game ever...first you must chose your hero"
   puts "There are some great heroes you can pick from...or you can make your own"
   puts heroes[:all_heroes]
-  puts "if you want to use one of the pre-made heroes please enter their name, otherwise enter build"
+  puts "\nif you want to use one of the pre-made heroes please enter their name, otherwise enter build"
   hero = gets.chomp
   if hero == "build"
     puts "please enter the name of your character"
@@ -44,6 +44,8 @@ def pick_hero(heroes)
   end
 end
 # binding.pry
+
+#this builds
 class Attributes
 
 
@@ -68,12 +70,19 @@ class Attributes
 end
 
 # binding.pry
+#this method stores the attributes of the hero into the origional hash with all the heroes. the input datatype is a hash, a class called Attributes, and a string. the output datatype is a hash.
+def store_stats(heroes_hash, attribute_class, hero)
+  heroes_hash[hero.to_sym] = attribute_class.all_stats
+end
 
-hero = pick_hero(heroes).upcase
-player = Attributes.new
-puts player.all_stats
-puts player.add_em_up
-# total_stats = player.add_em_up
+
+hero = pick_hero(heroes)
+attributes_new = Attributes.new
+store_stats(heroes, attributes_new, hero)
+binding.pry
+
+
+
 # puts "your hero is #{hero} and their total hitpoints are #{total_stats}"
 # puts "would you like to see a breakdown of your hitpoints (y/n)"
 # breakdown = gets.chomp
