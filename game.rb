@@ -125,14 +125,14 @@ def level_1(hero, heroes_hash)
   end
 end
 
-
+# this method is the second level of the game. inputs are a string, a hash, and a boolean. outputs are a string or a boolean
 def level2(hero, heroes_hash, level_1_boolean)
   if level_1_boolean == true
     puts "you've made it to the inter-setellar ship orbiting Kazangee. The capitain asks you where you want to go."
     puts " do you want to go to the ocean planet of Aquatarious or the cold and windy planet of Ventrisum"
     input = gets.chomp
     puts "the capitain likes your choice and will take you there immediately"
-    hash_choices = {planet: input}
+    hash_choices = input
   else
     puts "you're still on Kazangee and on your way home...you get lost and find yourself in a dark ally!"
     puts "suddenly you hear a scary voice say GIMME YOUR STUFF!"
@@ -144,13 +144,44 @@ def level2(hero, heroes_hash, level_1_boolean)
     else
       puts "You parry right, parry left, and then crack 'em straight in the chin knocking them on the ground"
       puts "you laugh at the criminals trivial attempt to rob you and continue on your way"
-      return
+      return true
     end
   end
 end
 
+#this method outlines the third level of the game. inputs are a string, a hash, and either a boolean or a string
+def level3(hero, heroes_hash, level_2_boolean)
+  if level_2_boolean == true
+    puts "you make it home after your confrentation with the robber, feeling happy and proud of yourself"
+    puts "your feeling so great that you decide to go into the local dive bar called The Spiders Web"
+    if heroes_hash[hero.to_sym][:weakness] == "spiders"
+      puts "At the Spiders Web you find that there are actually Spiders serving the drinks and become frozen with fright!"
+      puts "because the spiders never leave you are eternally frozen and die of starvation"
+      exit
+    end
+  else
+    puts "youve arrived at #{level_2_boolean} and the capitain drops you off"
+    if level_2_boolean == "Aquatarious"
+      if heroes_hash[hero.to_sym][:weakness] == "water"
+        puts "you were dropped off in the ocean and drown because your weakness is water and you cant swim"
+        exit
+      end
+    elsif level_2_boolean == "Ventrisum"
+      if heroes_hash[hero.to_sym][:weakness] == "cold"
+          puts "you were dropped in the cold and froze to death because your weakness is the cold"
+          exit
+      end
+
+    end
+    puts "you begin to explore the planet"
+  end
+end
+
+
+
 lev_1 = level_1(hero, heroes)
 lev_2 = level2(hero, heroes, lev_1)
+level3(hero, heroes, lev_2)
 
 
 
