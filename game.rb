@@ -75,11 +75,29 @@ def store_stats(heroes_hash, attribute_class, hero)
   heroes_hash[hero.to_sym] = attribute_class.all_stats
 end
 
+kryptonites = ["sunlight", "darnkness", "heat", "cold", "kryptonite", "spiders", "bats", "water", "heights"]
+
+
+#this method assigns the hero a weakness. input datatypes are a hash, a string, and an array. output datatype is a string
+def kryptonite(heroes_hash, hero, kryptonite_array)
+  puts "Your hero has these amazing attributes, however every hero has a weakness...their very own Kryptonite!"
+  puts "Your hero will be no different"
+  hero = hero
+  weakness = kryptonite_array.sample
+  puts "#{hero}'s weakness is the #{weakness}"
+  heroes_hash[hero.to_sym][:weakness] = weakness
+  # return weakness
+end
+
+
 
 hero = pick_hero(heroes)
 attributes_new = Attributes.new
 store_stats(heroes, attributes_new, hero)
+kryptonite(heroes, hero, kryptonites)
 binding.pry
+
+
 
 
 
