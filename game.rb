@@ -75,56 +75,86 @@ def store_stats(heroes_hash, attribute_class, hero)
   heroes_hash[hero.to_sym] = attribute_class.all_stats
 end
 
-kryptonites = ["sunlight", "darnkness", "heat", "cold", "kryptonite", "spiders", "bats", "water", "heights"]
+kryptonites = ["darnkness", "heat", "cold", "kryptonite", "spiders", "bats", "water", "heights"]
 
 
-#this method assigns the hero a weakness. input datatypes are a hash, a string, and an array. output datatype is a string
+#this method assigns the hero a weakness and to add that weakness to the original hash along with the attributes. input datatypes are a hash, a string, and an array. output datatype is a string
 def kryptonite(heroes_hash, hero, kryptonite_array)
   puts "Your hero has these amazing attributes, however every hero has a weakness...their very own Kryptonite!"
   puts "Your hero will be no different"
   hero = hero
   weakness = kryptonite_array.sample
-  puts "#{hero}'s weakness is the #{weakness}"
+  puts "#{hero}'s weakness is #{weakness}"
   heroes_hash[hero.to_sym][:weakness] = weakness
-  # return weakness
 end
 
 
 
 hero = pick_hero(heroes)
+hero1 = hero.upcase
 attributes_new = Attributes.new
+puts "#{hero1} has these attributes listed below!"
+puts attributes_new.all_stats
+puts "#{hero1}'s total hitpoints are"
+puts attributes_new.add_em_up
 store_stats(heroes, attributes_new, hero)
 kryptonite(heroes, hero, kryptonites)
-binding.pry
-
-
-
-
-
-# puts "your hero is #{hero} and their total hitpoints are #{total_stats}"
-# puts "would you like to see a breakdown of your hitpoints (y/n)"
-# breakdown = gets.chomp
-# if breakdown == "y"
-# end
-
-
 # binding.pry
 
 
+puts "Now that you've got your character made"
+puts "its time to begin the journey...."
 
 
-#I want to try and place the random stats w/ name into a hash or a array, somewhere where they can all be listed
-# binding.pry
+#this method does the first level of the game. input datatype is a string and a hash. output datatype is a boolean
+def level_1(hero, heroes_hash)
+  puts "Your jorney begins on the planet of Kazangee in the Manta system"
+  puts "the transport ship is ready to take you to the inter-setellar ship orbiting Kazangee!"
+  puts "Do you stay on planet...or leave Kazangee? (stay/leave)"
+  input = gets.chomp
+  if input == "leave"
+    if heroes_hash[hero.to_sym][:weakness] == "heights"
+      puts "Oh No! On the trip to the inter-setellar ship #{hero} died! #{hero}'s weakness was heights and died of fright when only a few hundred feet off the ground"
+      exit
+    else
+      puts "bon-voyage!"
+      return true
+    end
+  else
+    return false
+  end
+end
+
+
+def level2(hero, heroes_hash, level_1_boolean)
+  if level_1_boolean == true
+    puts "you've made it to the inter-setellar ship orbiting Kazangee. The capitain asks you where you want to go."
+    puts " do you want to go to the ocean planet of Aquatarious or the cold and windy planet of Ventrisum"
+    input = gets.chomp
+    puts "the capitain likes your choice and will take you there immediately"
+    hash_choices = {planet: input}
+  else
+    puts "you're still on Kazangee and on your way home...you get lost and find yourself in a dark ally!"
+    puts "suddenly you hear a scary voice say GIMME YOUR STUFF!"
+    puts "#{hero} being the amazing hero they are says if you want it your going to have to take it from me!"
+    puts "the two begin to fight"
+    if heroes_hash[hero.to_sym][:weakness] == "darnkness"
+      puts "your one weakness was the dark and the robber easily crushed you, took your stuff, and left you to die"
+      exit
+    else
+      puts "You parry right, parry left, and then crack 'em straight in the chin knocking them on the ground"
+      puts "you laugh at the criminals trivial attempt to rob you and continue on your way"
+      return
+    end
+  end
+end
+
+lev_1 = level_1(hero, heroes)
+lev_2 = level2(hero, heroes, lev_1)
 
 
 
 
-# pick_hero(heroes)
-
-
-# puts heroes
-# binding.pry
-#allow each player to pick their own attribute from the has of heroes, or make their own character
 
 
 
