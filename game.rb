@@ -3,6 +3,10 @@
 
 # For all methods, you will comment 3 things: what the method does, the expected datatype/class of each input argument, and the expected datatype/class of the return value. If using a class, make note of where you're using 'self' (implied or explict) to refer to the instance of the class itself. For example
 
+# 1. what the method does
+#   2. the expected datatype/class of each input argument
+#   3. the expected datatype/class of the return value
+
 
 require 'pry'
 
@@ -21,6 +25,8 @@ heroes = {
 
 # binding.pry
 #each hero has some attibutes, chose three attributes, and one weakness
+
+
 #this code will either add a new key to the hash or allow the player to pick from the existing list
 def pick_hero(heroes)
   puts "Welcome to the best game ever...first you must chose your hero"
@@ -37,54 +43,45 @@ def pick_hero(heroes)
     return hero.downcase
   end
 end
-
+# binding.pry
 class Attributes
 
-  attr_accessor :stregnth, :speed, :wisdom, :alertness, :magic, :health
 
   def initialize
-    @overall_stats = {}
-  end
-
-  def stats_stregnth
     @stregnth = rand(1..10)
-  end
-
-  def stats_speed
     @speed = rand(1..10)
-  end
-
-  def stats_wisdom
     @wisdom = rand(1..10)
-  end
-
-  def stats_alertness
     @alertness = rand(1..10)
-  end
-
-  def stats_magic
     @magic = rand(1..10)
-  end
-
-  def stats_health
     @health = rand(1..10)
   end
 
+  def all_stats
+    @all_stats = {stregnth: @stregnth, speed: @speed, wisdom: @wisdom, alertness: @alertness, magic: @magic, health: @health}
+  end
+
+
   def add_em_up
-    total = stats_stregnth + stats_health + stats_magic + stats_alertness + stats_wisdom + stats_speed
+    total = @stregnth + @speed + @wisdom +@alertness + @magic + @health
   end
 
 end
 
+# binding.pry
+
 hero = pick_hero(heroes).upcase
 player = Attributes.new
-total_stats = player.add_em_up
-puts "your hero is #{hero} and their total hitpoints are #{total_stats}"
-puts "would you like to see a breakdown of your hitpoints (y/n)"
-breakdown = gets.chomp
-if breakdown == "y"
+puts player.all_stats
+puts player.add_em_up
+# total_stats = player.add_em_up
+# puts "your hero is #{hero} and their total hitpoints are #{total_stats}"
+# puts "would you like to see a breakdown of your hitpoints (y/n)"
+# breakdown = gets.chomp
+# if breakdown == "y"
+# end
 
 
+# binding.pry
 
 
 
@@ -103,4 +100,4 @@ if breakdown == "y"
 #allow each player to pick their own attribute from the has of heroes, or make their own character
 
 
-# puts heroes
+
