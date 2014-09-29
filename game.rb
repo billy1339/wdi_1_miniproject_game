@@ -58,11 +58,12 @@ class Attributes
     @health = rand(1..10)
   end
 
+  #this method puts all the attributes into a hash. takes no inputs and output datatype is a hash
   def all_stats
     @all_stats = {stregnth: @stregnth, speed: @speed, wisdom: @wisdom, alertness: @alertness, magic: @magic, health: @health}
   end
 
-
+  #this method adds up all the attributes to give hitpoints for the hero. it takes not inputs and returns a integer(fixnum)
   def add_em_up
     total = @stregnth + @speed + @wisdom +@alertness + @magic + @health
   end
